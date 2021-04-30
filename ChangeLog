@@ -1,0 +1,148 @@
+28/03/2021
+Initial implementation.
+This package *REPLACES* the package "hse".  Effectively
+this is a namep-change only.  A referee of a paper that
+I wrote, based around this package, objected to the name
+"hse" ("hope springs eternal") saying that readers might
+find this name too frivilous.
+
+Changelogs for the "hse" predecessors of this package may
+be found in the CRAN archives.
+
+Version 0.0-1.
+
+29/03/2021
+
+Added the data set "hrsRcePred" and documented it.
+
+Added the function mleBb() and documented it.
+
+Incremented the version number.
+Version 0.0-2
+
+30/03/2021
+
+Added the data set "visRecog" and documented it.
+
+Changed the name of the success probability parameter in mleBB() from "p"
+to "m" to be consistent with the notation used in rmutil.
+
+Added names to the vector returned by mleBB().
+
+Incremented the version number.
+Version 0.0-3
+
+04/04/2021
+
+Got rid of mleBb(); going with just using the db distribution.
+
+Changed the default value of maxit in mleDb() from 100 to 1000.
+
+Added a maxit argument to simulate.mleDb().
+
+Added maxit arguments to gof().
+
+Modified ddb() to take a "log" argument (defaulting to FALSE).
+
+06/04/2021
+
+Added a "maxit" argument to mcCovMat().
+
+Added the possibility that a warning may be issued (rather
+than an error being thrown) in mleDb() or mleBb().  Which
+of the two happens is controlled by options()[["maxitErrorOrWarn"]]
+which is set to "error" at startup.
+
+Added the function set.eow() to allow the user to switch between
+the two options.
+
+Added the function get.eow() to query this option.
+
+07/04/2021
+
+Added functions gradDb() and hessDb() and
+revised the grad() and hess() functions from gradHess.R to make use
+of them.
+
+Made some adjustments to mleDb() (eliminated an unnecessary
+complication) in respect of the way the hessian-cum-covariance
+matrix is calculated.
+
+10/04/2021
+
+Fixed a glitche in mleDb() in respect of the names of
+the gpar argument used by gfun.  This was mucking everying up
+to an incredible extent!
+
+11/04/2021
+
+Added arguments "covmat" and "useGinv" to mleDb().
+
+Amended mcCovMat to call mleDb() with covmat set equal to FALSE.
+
+Corrected sign errors in aHess() and nHess().
+
+Added dimnames attribute to the value returned by nHess().
+
+Added dimnames attribute to the value returned by hessDb().
+
+12/04/2021
+
+Made various other (fairly minor) corrections to the code and to
+the help files, fixing errors that were noticed in the course of
+fiddling about with them.
+
+13/04/2021
+
+Added a simulate.Vpars() method for simulate.
+
+Added a function makeVpars() to create "Vpars" objects.
+
+Added an example using makeVpars() simulate.Vars() to the help
+for ndata.
+
+Incremented the version number.
+Version 0.0-4.
+
+23/04/2021
+
+Fixed a stupid glitch w.r.t. setting of seeds in simulate.Dbdpars()
+and simulate.mleDb().
+
+Incremented the version number.
+Version 0.0-5.
+
+26/04/2021
+
+Amended mcCovMat() so that it works with objects of class "Dbdpars".
+
+Amended finfo() so that its arguments are the same as (in the same order
+as) those of makeDbdpars()
+
+Incremented the version number.
+Version 0.0-6.
+
+29/04/2021
+Uploaded to CRAN.
+
+30/04/2021
+
+Made changes/corrections at the behest of CRAN (explicitly Gregor Seyer).
+
+* wrapped all examples which use data from hmm.discnp in
+    if(requireNamespace("hmm.discnp")) { ... }
+
+* changed instances of "if(require(...))" to "if(requireNamespace("..."))".
+
+* adjusted the value returned by logLik.mleDb() to have class
+  "logLik" and an attribute "df" (equal to 2).  Made a corresponding
+  adjustment to the help file for logLik.mldDb().
+
+Incremented the version number.
+Version 0.0-7.
+
+Made a correction (re-set par() values if these are changed in
+examples!) which I had neglected to make.
+
+Incremented the version number.
+Version 0.0-8.

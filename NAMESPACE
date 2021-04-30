@@ -1,0 +1,16 @@
+
+importFrom("stats", "runif", "var", "optim", "simulate",
+           "coef", "lm", "optimHess", "vcov", "logLik","pchisq")
+importFrom("graphics", "axis", "legend", "lines", "contour", "persp")
+S3method(plot,mleDb)
+S3method(vcov,mleDb)
+S3method(logLik,mleDb)
+S3method(expValDb,mleDb)
+S3method(expValDb,default)
+S3method(varDb,mleDb)
+S3method(varDb,default)
+S3method(simulate,mleDb)
+S3method(simulate,Dbdpars)
+
+# Export everything.
+exportPattern("*")
