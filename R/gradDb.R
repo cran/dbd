@@ -1,4 +1,4 @@
-grad <- function(x,gpar) {
+gradDb <- function(x,gpar) {
 #
 # Set up auxiliary functions.
     h <- function(x,n,zeta){

@@ -148,6 +148,6 @@ for(i in 1:5) {
 }
 x <- c(-1.5,-1,-0.5,0,0.5,1,1.5)
 ddb(x,2.5,1,5,TRUE) # Produces 0 for all but the 4th and 6th
-                    # entries of x, and issues a warning, as it should.
+                     # entries of x, and issues a warning.
 }
 \keyword{ distribution }

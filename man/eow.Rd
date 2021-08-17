@@ -1,13 +1,14 @@
 \name{eow}
+\alias{eow}
 \alias{set.eow}
 \alias{get.eow}
 \title{
     Set or query the value of the \code{"maxitErrorOrWarn"} option.
 }
 \description{
-    Chooses (\code{set.eow()}) or queries (\code{get.eow()}) the
-    reaction to \code{maxit} being exceeded in \code{mleDb()}.
-    The possible reactions are to throw
+    Chooses (\code{set.eow()}) or queries (\code{get.eow()}), the
+    reaction to \code{maxit} being exceeded in \code{mleDb()}
+    or \code{mleBb()}.   The possible reactions are to throw
     an error or to issue a warning.  The choice is effected
     by calling \code{set.eow()} which sets the value of
     \code{options()[["maxitErrorOrWarning"]]}.  The current choice
@@ -21,7 +22,8 @@ get.eow()
 \arguments{
   \item{eow}{
   Character string that specifies the reaction to \code{maxit}
-  being exceeded in \code{mleDb()}.  May be abbreviated.
+  being exceeded in \code{mleDb()} or \code{mleBb()}.  May be
+  abbreviated.
 }
 }
 \section{Note}{
@@ -42,6 +44,7 @@ get.eow()
 
 \seealso{
    \code{\link{mleDb}()}
+   \code{\link{mleBb}()}
    \code{\link{options}()}
 }
 \examples{

@@ -7,12 +7,14 @@
     Creates a plot of type \code{"h"} of the probabilities of
     each possible \code{x} value of a db distribution where
     the probabilities are calculated on the basis of parameters
-    estimated by the function \code{mleDb()}.
+    estimated by the function \code{mleDb()}.  If \code{obsd}
+    is supplied it also superimposes/juxtaposes vertical lines
+    representing the observed proportions.
 }
 \usage{
-\method{plot}{mleDb}(x, ..., col.fit = "red", col.obsd = "blue",
-              xlim=NULL, ylim=NULL, xlab = NULL, ylab = NULL,
-              obsd = NULL, main = "", legPos = "topright")
+\method{plot}{mleDb}(x, ..., plot = TRUE, col.fit = "red", col.obsd = "blue",
+              tikx=NULL, xlim=NULL, ylim=NULL, xlab = NULL, ylab = NULL,
+              obsd = NULL, incr = NULL, main = "", legPos = "topright")
 }
 \arguments{
   \item{x}{
@@ -21,6 +23,10 @@
 }
   \item{\dots}{
   Not used.
+}
+  \item{plot}{
+  Logical scalar; should a plot be produced (or should the function
+  simply return a data frame consisting of the relevant values)?
 }
   \item{col.fit}{
   The colour for the (vertical) lines corresponding to the
@@ -32,6 +38,9 @@
   \dQuote{observed} probabilities (proportions), i.e. the
   probabilities calculated by tabulating the data (from which the
   parameters were estimated.  Ignored if \code{obsd} is not supplied.
+}
+  \item{tikx}{
+  (Optional) vector of locations of the tick marks on the \code{x}-axis.
 }
   \item{xlim}{A numeric vector of length 2 specifying the limits
   of the \code{x}-axis.  Defaults to \code{c(nbot,ntop)} where
@@ -52,6 +61,17 @@
   The data set from which the parameters were estimated, i.e. from
   which \code{x} was obtained.  (Optional.)
 }
+  \item{incr}{
+  Numeric scalar; defaults to 0.1 if \code{ntop} (extracted from
+  \code{x}) is less than 20 and to 0.5 otherwise.  This number should
+  be non-zero and less than 1 in absolute value.  (One would usually
+  want it to be positive, but it could conceiveably be set to a
+  small negative value.) It gives the value of the \dQuote{increment}
+  or \dQuote{shift} that separates the vertical lines representing
+  the fitted probabilities and those representing the observed
+  proportions (calculated from \code{obsd}).  Ignored if \code{obsd}
+  is not supplied.
+}
   \item{main}{
   A main title for the plot; defaults to the empty string.
 }
@@ -65,7 +85,15 @@
 }
 }
 \value{
-  None.  A plot is produced as a side effect.
+  A data frame with numeric columns \code{x}, \code{p} and possibly
+  \code{po}.  The \code{x} column consists of the integers from
+  0 to \code{ntop} or from 1 to \code{ntop} depending on whether
+  \code{zeta} is \code{TRUE}.  The \code{p} column consists of
+  the appropriate probabilities of the \code{x} values, calculated
+  by \code{link{ddb}()}.  The \code{po} column is present only if
+  \code{obsd} is supplied and consists of the observed proportions.
+  The value is returned invisibly.  A plot is produced as a
+  side-effect if \code{plot} is \code{TRUE}.
 }
 \author{Rolf Turner
   \email{r.turner@auckland.ac.nz}
@@ -81,10 +109,12 @@
 }
 
 \seealso{
-   \code{\link{mleDb}()}, \code{\link{plotDb}()}
+   \code{\link{mleDb}()}
+   \code{\link{plotDb}()}
+   \code{\link{ddb}()}
 }
 \examples{
-   if(requireNamespace("hmm.discnp")) {
+   if(require(hmm.discnp)) {
       xxx <- hmm.discnp::Downloads
       fit <- mleDb(xxx,ntop=14,z=TRUE)
       plot(fit)

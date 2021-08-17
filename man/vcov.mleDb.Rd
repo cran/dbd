@@ -21,35 +21,27 @@
 }
 }
 \details{
-   The covariance matrix attribute may not exist (may be \code{NULL})
-   if the argument \code{covmat} of \code{mleDb()} was set to
-   \code{FALSE}.  In this case the value returned by this function
-   is \code{NA}.
-
    The estimated covariance matrix is the inverse of the hessian
    of the negative log likelihood. (This may also be referred to
-   as the Fisher information, evaluated at the maximum likelihood
-   estimates of the parameters.)
+   as the observed Fisher information --- the Fisher information
+   evaluated at the maximum likelihood estimates of the parameters).
 }
-
 \value{
-   A two-by-two positive definite (with any luck!) numeric matrix,
-   or \code{NA} (see \bold{Details}.  When a matrix is returned it
-   is an estimate of the covariance matrix of the parameter estimates.
+   A two-by-two positive definite (with any luck!) numeric matrix.
+   It is an estimate of the covariance matrix of the parameter estimates.
 }
 \author{Rolf Turner
   \email{r.turner@auckland.ac.nz}
 }
 \seealso{
+  \code{\link{vcov.mleBb})}
   \code{\link{mleDb}()}
 }
 \examples{
-if(requireNamespace("hmm.discnp")) {
-    X    <- hmm.discnp::SydColDisc
-    X$y  <- as.numeric(X$y)
-    X    <- split(X,f=with(X,interaction(locn,depth)))
-    fitz <- lapply(X,function(x){mleDb(x$y,ntop=5)})
-    lapply(fitz,vcov)
-}
+X <- hmm.discnp::SydColDisc
+X$y <- as.numeric(X$y)
+X <- split(X,f=with(X,interaction(locn,depth)))
+fitz <- lapply(X,function(x){mleDb(x$y,ntop=5)})
+lapply(fitz,vcov)
 }
 \keyword{ utilities }

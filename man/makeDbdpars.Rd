@@ -13,11 +13,9 @@ makeDbdpars(alpha, beta, ntop, zeta, ndata)
 \arguments{
   \item{alpha}{
   The first \dQuote{shape} parameter of the db distribution.
-  May be abbreviated.
 }
   \item{beta}{
   The second \dQuote{shape} parameter of the db distribution.
-  May be abbreviated.
 }
   \item{ntop}{
   Integer scalar, strictly greater than 1.  The maximum possible
@@ -52,7 +50,7 @@ makeDbdpars(alpha, beta, ntop, zeta, ndata)
   \email{r.turner@auckland.ac.nz}
 }
 \seealso{
-  \code{\link{simulateDbd}}
+  \code{\link{simulate.Dbdpars}()}
 }
 \examples{
    obj1  <- makeDbdpars(alpha=2,beta=3,ntop=20,zeta=TRUE,ndata=500)

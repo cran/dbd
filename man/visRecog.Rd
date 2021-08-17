@@ -58,5 +58,10 @@ dbfit10 <- with(visRecog,mleDb(tot10,20,TRUE))
 set.seed(42) # To get repeatable Monte Carlo p-values.
 print(gof(dbfit5,obsd=visRecog[["tot5"]],MC=TRUE)$pval)   # 0.86
 print(gof(dbfit10,obsd=visRecog[["tot10"]],MC=TRUE)$pval) # 0.68
+bbfit5  <- with(visRecog,mleBb(tot5,20))
+bbfit10 <- with(visRecog,mleBb(tot10,20))
+set.seed(42) # To get repeatable Monte Carlo p-values.
+print(gof(bbfit5,obsd=visRecog[["tot5"]],MC=TRUE)$pval)   # 0.94
+print(gof(bbfit10,obsd=visRecog[["tot10"]],MC=TRUE)$pval) # 0.70
 }
 \keyword{datasets}

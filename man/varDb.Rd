@@ -43,10 +43,9 @@ varDb(ao,...)
    including \dots if the generic does.}} and \dQuote{\emph{A method
    must have arguments in exactly the same order as the generic.}}
 
-   For the \code{"mleDb"} method, the values of \code{alpha}
-   and \code{beta} are obtained from \code{ao}, and \code{ntop}
-   and \code{zeta} (passed to \code{ddb()}) are extracted from the
-   attributes of \code{ao}.
+   For the \code{"mleDb"} method, the values of \code{alpha} and
+   \code{beta} are obtained from \code{ao}, and \code{ntop}, and
+   \code{zeta} are extracted from the attributes of \code{ao}.
 
    The variance of a db distribution is theoretically intractable
    but is readily calculable numerically as \deqn{\sum (x - \mu)^2
@@ -66,11 +65,9 @@ random variable with the given parameters.
 \examples{
    varDb(3,4,15)
    varDb(3,4,15,TRUE)
-   if(requireNamespace("hmm.discnp")) {
-       X   <- hmm.discnp::Downloads
-       fit <- mleDb(X,ntop=15,zeta=TRUE)
-       varDb(fit)
-   }
+   X   <- hmm.discnp::Downloads
+   fit <- mleDb(X,ntop=15,zeta=TRUE)
+   varDb(fit)
 }
 \keyword{math}
 \keyword{univar}

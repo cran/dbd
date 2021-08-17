@@ -1,4 +1,4 @@
-hess <- function(hpar) {
+hessDb <- function(hpar) {
 #
 # Set up auxiliary functions.
 #
@@ -14,24 +14,6 @@ hess <- function(hpar) {
    T2 <- function(x,n,zeta) {
        log(1-(x+zeta)/(n+1+zeta))
    }
-
-# Preparation.
-    if(length(hpar) != 5) {
-        whinge <- paste0("Argument \"hpar\" is of length ",length(hpar), "not 5.\n")
-        stop(whinge)
-    }
-    if(is.null(names(hpar))) { # Assume that the order is
-                               # "alpha","beta","ntop","zeta","ndata"
-            names(hpar) <- c("alpha","beta","ntop","zeta","ndata")
-    } else {
-        if(!all(names(hpar) %in% c("alpha","beta","ntop","zeta","ndata"))) {
-            nhp <- paste(names(hpar),collapse=", ")
-            whinge <- paste0("The names of \"hpar\", i.e. ",nhp,
-                             ", are incorrect.\n")
-            stop(whinge)
-        }
-    }
-
 
 #
 # The substance.

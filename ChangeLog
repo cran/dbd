@@ -1,7 +1,7 @@
 28/03/2021
 Initial implementation.
 This package *REPLACES* the package "hse".  Effectively
-this is a namep-change only.  A referee of a paper that
+this is a name-change only.  A referee of a paper that
 I wrote, based around this package, objected to the name
 "hse" ("hope springs eternal") saying that readers might
 find this name too frivilous.
@@ -146,3 +146,155 @@ examples!) which I had neglected to make.
 
 Incremented the version number.
 Version 0.0-8.
+
+Uploaded to CRAN
+
+01/05/2021
+
+Fixed a typo "namep-change" (!!!) in this ChangeLog.
+
+Removed spurious links to meDb() (which is undocumented!) from
+some help files.
+
+25/05/2021
+
+Removed another spurious link to meDb() (from the help for
+mleDb()).
+
+Incremented the version number.
+Version 0.0-9.
+
+11/07/2021
+At the suggestion of a referee of the accompanying paper, added a
+function exactMeBb(), and documented it.
+
+Incremented the version number.
+Version 0.0-10.
+
+12/07/2021
+Made the zeta argument of exactMeDb() default to FALSE (matching
+up with mleDb()).
+
+Incremented the version number.
+Version 0.0-11.
+
+12/07/2021
+Adjusted the help file eow.Rd to make reference to exactMeBb() as
+well as mleDb().  Added "eow" to the aliases.  Fixed a glitch
+(start of a sentence had been omitted).  Added an example of
+set.eow() --- no effect when options()$eow is "error".
+
+Incremented the version number.
+Version 0.0-12.
+
+26/07/2021
+Added tools for dealing with the beta-binomial distribution.
+These were original created in the "Verdis" ("versatile discrete
+distributions") package, into which the dbd package morphed for a
+time.  I decided to eschew use of the beta-binomial distribution, but
+have now decided to reinstate it, but to have it play a relatively
+minor with the db distribution holding prominence.
+
+* added function makeBbdpars() and method simulate.Bbdpars()
+
+* made mcCovMat() generic, with methods
+        mcCovMat.mleDb()
+        mcCovMat.mlebb()
+        mcCovMat.Dbdpars()
+        mcCovMat.Bbdpars()
+        mcCovMat.default()
+  The default method simply throws an error.
+
+* made a number of minor adjustments and corrections to the code
+  and the help.
+
+* fixed a stupid glitch in the simulate methods, in respect of the
+  "seed' argument, which could have resulted in all simulated data
+  sets being identical.
+
+Incremented the version number.
+Version 0.0-13.
+
+27/07/2021
+Fixed a glitch pertaining to the extraction of "zeta" from the
+"object" argument of mcCovMat (the code had been trying to find
+zeta as an attibute of the object, whereas, when the object is
+of class "Dbdpars" or "Bbdpars", zeta is a *component* of the list
+consituting the object).  Also adjusted some 'list$xxx' constructs
+to have the form 'list[["xxx"]' --- safer!
+
+Incremented the version number.
+Version 0.0-14.
+
+29/07/2021
+Replaced the functions finfoDb() and finfoB() by a single
+function finfo() the first argument of which is "distr" that
+specifies which distribution is to be considered.
+
+Incremented the version number.
+Version 0.0-15.
+
+15/08//2021
+Added the argument "verb" (defaulting to FALSE) to the gof
+methods.  Setting it to TRUE causes "progress reports" to
+be issued during the course of the simulations that are conducted
+when MC is TRUE.
+
+Added the argument "seed" to the gof methods, for use when MC is
+TRUE.  If MC is TRUE the value of the "seed" argument, or the
+random value chosen if "seed" is not supplied, is made an attribute
+of the returned value.
+
+Incremented the version number.
+Version 0.0-16.
+
+16/08/2021
+Adjusted the "Parsonnet scores" example in the help for gof().
+Added references to the Wittenberg paper and to the spcadjust
+package.
+
+Incremented the version number.
+Version 0.0-17.
+
+17/08/2021
+Changed the plotting functions plotDb(), plotBb(), plot.mleDb()
+and plot.mleBb() to return values (invisibly).  These values consist
+of the data that were plotted.
+
+Eliminated some redundant calculations in plot.mleDb() and plot.mleBb()
+(these calculations also being done by plotDb() and plotBb() respectively.
+
+Added an "incr" argument to plot.mleDb() and plot.mleBb().  This specifies
+the gap between the vertical lines representing the fitted probabilities
+and those representing the observed proportions.  Previously the value
+of incr was hard-wired ... and then ignored (i.e. re-hard-wired in the
+call to lines()).
+
+Incremented the version number.
+Version 0.0-18.
+
+17/08/2021
+Added a "plot" (logical scalar) argument to the plotting functions
+plotDb(), plotBb(), plot.mleDb() and plot.mleBb().  Determines
+whether a plot is actually produced (rather than having the function
+simply return a value).
+
+Incremented the version number.
+Version 0.0-19.
+
+17/08/2021
+Changed the default value of "incr" to depend on "size"
+(plot.mleBb()) or "ntop" (plot.mleDb()).  It now defaults to 0.1
+for values of these quantities less than 20 and to 0.5 otherwise.
+
+Incremented the version number.
+Version 0.0-20.
+
+17/08/2021
+Wrapped some code in \dontrun{ } in makeBbdpars.Rd and hrsRcePred.Rd
+because it was taking too long for CRAN.
+
+Changed http to https in mleBb.Rd at the behest of CRAN.
+
+Incremented the version number.
+Version 0.0-21.

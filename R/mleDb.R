@@ -1,6 +1,7 @@
 mleDb <- local({
     objFun <- function(par,x,ntop,zeta){
-                -sum(log(ddb(x,alpha=par[1],beta=par[2],ntop=ntop,zeta=zeta)))
+                -sum(log(ddb(x=x[!is.na(x)],alpha=par[1],
+                              beta=par[2],ntop=ntop,zeta=zeta)))
               }
 
     gfun <- function(par,x,ntop,zeta){
@@ -9,25 +10,19 @@ mleDb <- local({
 # Negative sign in the next line because optim() needs the gradient
 # of the function that is is *minimising* which is the *negative*
 # log likelihood.
-                -grad(x,gpar)
+                -grad(x=x[!is.na(x)],distr="db",gpar)
             }
 
     hfun <- function(par,ndata,ntop,zeta){
                 hpar <- c(alpha=par[1],beta=par[2],
                            ntop=ntop,zeta=zeta,ndata=ndata)
-                hess(hpar)
+                hess(x=NULL,distr="db",hpar)
             }
 
 function (x,ntop,zeta=FALSE,par0=NULL,UB=10,maxit=1000,
           covmat=TRUE,useGinv=FALSE) {
 # Maximum likelihood estimation of the shape parameters alpha
 # and beta of the db distribution.
-#
-# Get rid of any missing values.
-    x <- x[!is.na(x)]
-    if(length(x) == 0) stop("There are no non-missing data.\n")
-
-# Starting estimates.
     if(is.null(par0)) {
         par0 <- pmin(meDb(x,ntop),UB)
     } else {
@@ -64,7 +59,8 @@ function (x,ntop,zeta=FALSE,par0=NULL,UB=10,maxit=1000,
     ndata <- sum(!is.na(x))
     attr(rslt,"ndata") <- ndata
     if(covmat) {
-        H  <- hess(hpar=c(rslt, ntop=ntop,zeta=zeta,ndata=ndata))
+        H  <- hess(x=NULL,distr="db",
+                     hpar=c(rslt, ntop=ntop,zeta=zeta,ndata=ndata))
         CM <- try(solve(H),silent=TRUE)
         if(inherits(CM,"try-error")) {
             if(useGinv) {
