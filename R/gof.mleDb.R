@@ -3,6 +3,12 @@ gof.mleDb <- function(object,obsd,...,test=TRUE,MC=FALSE,seed=NULL,
 #
 # Goodness of fit test for the db distribution.
 #
+
+# Set the seed if necessary.
+if(MC) {
+    if(is.null(seed)) seed <- sample(1:1e5,1)
+    set.seed(seed)
+}
 ntop <- attr(object,"ntop")
 zeta <- attr(object,"zeta")
 nbot <- 0+!zeta
@@ -17,7 +23,8 @@ if(MC) {
         cmpr <- numeric(nsim)
         for(i in 1:nsim) {
             simdat <- simulate(object,nsim=1)
-            fitz   <- mleDb(simdat,ntop=ntop,zeta=zeta,maxit=maxit)
+            fitz   <- mleDb(simdat,ntop=ntop,zeta=zeta,maxit=maxit,
+                            par0=object)
             cmpr[i] <- gof.mleDb(fitz,simdat,test=FALSE)
             cat(i,"")
             if(i%%10 == 0) cat("\n")
@@ -25,9 +32,10 @@ if(MC) {
        if(nsim%%10 != 0) cat("\n")
     } else {
         simdat <- simulate(object,nsim=nsim)
-        fitz   <- lapply(simdat,function(sd,ntop,zeta,maxit){mleDb(sd,
-                                ntop=ntop,zeta=zeta,maxit=maxit)},
-                                ntop=ntop,zeta=zeta,maxit=maxit)
+        fitz   <- lapply(simdat,function(sd,ntop,zeta,maxit,object){mleDb(sd,
+                                ntop=ntop,zeta=zeta,maxit=maxit,
+                                par0=object,covmat=FALSE)},ntop=ntop,zeta=zeta,
+                                maxit=maxit,object=object)
         cmpr   <- lapply(1:nsim,function(k,fitz,obsd){gof(fitz[[k]],
                                 obsd[[k]],test=FALSE)},fitz=fitz,obsd=simdat)
     }

@@ -1,5 +1,5 @@
-dd881806c4bcc2ee3cb80dbb031096f7 *ChangeLog
-f4347f8f7af3139eca11c5f2085fe272 *DESCRIPTION
+bb8b2e56dab48e1bd9653c054369b6a7 *ChangeLog
+e395dbda66ec6bb380d39530bcda558d *DESCRIPTION
 fe6903ca57afa5b5358279b0020479fb *NAMESPACE
 38b7cfb74aeb00a64f337bd51bb1277f *R/First.R
 be17e5ac2cd180b52409094cc780825c *R/aHess.R
@@ -14,8 +14,8 @@ c525033da35316833d726dfd26883c5d *R/expValDb.default.R
 53d68369d86791a2a2146254900c0ae8 *R/expValDb.mleDb.R
 fd8b2682818d415b4cb1f8e5d8b1d60b *R/finfo.R
 a8ec4b39fa16570612056331d54d1b79 *R/gof.R
-e12594bd6d0da7aa08afcd14a2b9b465 *R/gof.mleBb.R
-977e93197f0b7bb6ae7774568e1930cd *R/gof.mleDb.R
+5227f03dada0e5c51d3bbd4449e3ab4a *R/gof.mleBb.R
+6eb90489f201f46e6b96cfeeb458065c *R/gof.mleDb.R
 68d6dae73d5942a49bc8ffb71f8c6fab *R/gradBb.R
 91d4b3299f7a9a178fa6dc5fe09e350b *R/gradDb.R
 1511e56db00253868b072f5ac44cfd47 *R/gradHess.R
@@ -69,7 +69,7 @@ f007e1c6fc74ec62f1f345a9739c5175 *man/expValBb.Rd
 6e9e6e602cf698587594cc18c6feaad1 *man/expValDb.Rd
 07a8d1d407824022398ee54ab1120fee *man/finfo.Rd
 c8c0cba10dd2f30f80a4c1d599c788a3 *man/gof.Rd
-c6cb8f4f8b8247ace33d683d55da7bd7 *man/hrsRcePred.Rd
+c1f1e6d7310ebdb7f899f5851563de32 *man/hrsRcePred.Rd
 ce528e432bee77ef92c4289cb08c7264 *man/llPlot.Rd
 4e6f13dc1e057766e54a4e9cc0f0a894 *man/logLik.Rd
 290cc2c55615a32b8a97d5fcb0e5bfe5 *man/makeBbdpars.Rd

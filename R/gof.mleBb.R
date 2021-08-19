@@ -7,6 +7,11 @@ gof.mleBb <- function(object,obsd,...,test=TRUE,MC=FALSE,seed=NULL,
 if(!requireNamespace("rmutil"))
     stop("The package \"rmutil\" seems not to be available.\n")
 
+# Set the seed if necessary.
+if(MC) {
+    if(is.null(seed)) seed <- sample(1:1e5,1)
+    set.seed(seed)
+}
 size <- attr(object,"size")
 xi   <- 0:size
 ndat <- sum(!is.na(obsd))
@@ -15,23 +20,22 @@ O    <- table(factor(obsd,levels=xi))
 stat <- sum((O-E)^2/E)
 if(!test) return(stat)
 if(MC) {
-    if(is.null(seed)) seed <- sample(1:1e5,1)
-    set.seed(seed)
     if(verb) {
         cmpr <- numeric(nsim)
         for(i in 1:nsim) {
             simdat <- simulate(object,nsim=1)
-            fitz   <- mleBb(simdat,size=size,maxit=maxit)
-            cmpr[i] <- gof.mleBb(fitz,simdat,test=FALSE)
+            fitz   <- mleBb(simdat,size=size,maxit=maxit,covmat=FALSE,
+                            par0=object)
+            cmpr[i] <- gof(fitz,simdat,test=FALSE)
             cat(i,"")
             if(i%%10 == 0) cat("\n")
        }
        if(nsim%%10 != 0) cat("\n")
     } else {
         simdat <- simulate(object,nsim=nsim)
-        fitz   <- lapply(simdat,function(sd,size,maxit){mleBb(sd,
-                                size=size,maxit=maxit)},
-                                size=size,maxit=maxit)
+        fitz   <- lapply(simdat,function(sd,size,maxit,object){mleBb(sd,
+                                size=size,maxit=maxit,par0=object,covmat=FALSE)},
+                                size=size,maxit=maxit,object=object)
         cmpr   <- sapply(1:nsim,function(k,fitz,obsd){gof.mleBb(fitz[[k]],
                             obsd[[k]],test=FALSE)},fitz=fitz,obsd=simdat)
     }

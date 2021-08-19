@@ -234,7 +234,7 @@ specifies which distribution is to be considered.
 Incremented the version number.
 Version 0.0-15.
 
-15/08//2021
+15/08/2021
 Added the argument "verb" (defaulting to FALSE) to the gof
 methods.  Setting it to TRUE causes "progress reports" to
 be issued during the course of the simulations that are conducted
@@ -298,3 +298,13 @@ Changed http to https in mleBb.Rd at the behest of CRAN.
 
 Incremented the version number.
 Version 0.0-21.
+
+19/08/2021
+Corrected a couple of major bugs in the gof() functions.
+(1) Setting of seed for the simulations was incorrectly handled.
+(2) Starting values used for fitting models to simulated data sets
+should have been set (to the parameters of the model being simulated)
+and had not been so set.
+
+Incremented the version number.
+Version 0.0-22.

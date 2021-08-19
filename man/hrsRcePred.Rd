@@ -57,23 +57,27 @@ Psychology, General} \bold{117}, pp. 96 -- 100.
     dbfit1n <- mleDb(top1n,ntop=10,zeta=TRUE)
     dbfit3e <- mleDb(top3e,ntop=10,zeta=TRUE)
     dbfit3n <- mleDb(top3n,ntop=10,zeta=TRUE)
-    set.seed(42) # To get repeatable Monte Carlo p-values.
+# Set seeds to get repeatable Monte Carlo p-values.
     \dontrun{ # Takes too long.
-        print(gof(dbfit1e,obsd=top1e,MC=TRUE,maxit=10000)$pval) # 0.41
-        print(gof(dbfit1n,obsd=top1n,MC=TRUE)$pval) # 0.75
-        print(gof(dbfit3e,obsd=top3e,MC=TRUE)$pval) # 0.37
-        print(gof(dbfit3n,obsd=top3n,MC=TRUE,maxit=8000)$pval) # 0.36
+        print(gof(dbfit1e,obsd=top1e,MC=TRUE,maxit=5000,verb=TRUE,seed=49)$pval) # 0.02
+        print(gof(dbfit1n,obsd=top1n,MC=TRUE,verb=TRUE,seed=128)$pval)           # 0.79
+        print(gof(dbfit3e,obsd=top3e,MC=TRUE,verb=TRUE,seed=303)$pval)           # 0.35
+        print(gof(dbfit3n,obsd=top3n,MC=TRUE,maxit=3000,verb=TRUE,seed=24)$pval) # 0.40
     }
     bbfit1e <- mleBb(top1e,size=10)
     bbfit1n <- mleBb(top1n,size=10)
     bbfit3e <- mleBb(top3e,size=10)
     bbfit3n <- mleBb(top3n,size=10)
-    set.seed(42) # To get repeatable Monte Carlo p-values.
+# Set seeds to get repeatable Monte Carlo p-values.
     \dontrun{ # Takes too long.
-        print(gof(bbfit1e,obsd=top1e,MC=TRUE)$pval) # 0.07
-        print(gof(bbfit1n,obsd=top1n,MC=TRUE)$pval) # 0.50
-        print(gof(bbfit3e,obsd=top3e,MC=TRUE)$pval) # 0.58
-        print(gof(bbfit3n,obsd=top3n,MC=TRUE)$pval) # 0.71
+        print(gof(bbfit1e,obsd=top1e,MC=TRUE,verb=TRUE,seed=792)$pval) # 0.11
+        print(gof(bbfit1n,obsd=top1n,MC=TRUE,verb=TRUE,seed=48)$pval)  # 0.64
+        print(gof(bbfit3e,obsd=top3e,MC=TRUE,verb=TRUE,seed=969)$pval) # 0.62
+        print(gof(bbfit3n,obsd=top3n,MC=TRUE,verb=TRUE,seed=834)$pval) # 0.75
     }
+# Reality check: goodness of fit tests for the fit of just plain *binomial*
+# distributions to these data sets yielded Monte Carlo p-values equal to
+# 0.22, 0.17, 0.32 and 0.73 respectively.  I.e. binomial fits appear to
+# work just fine!
 }
 \keyword{datasets}
